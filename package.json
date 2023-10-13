@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "rxjs": "^7.8.1"
+    "axios-observable": "^2.0.0",
+    "rxjs": "^7.8.1",
+    "xmlhttprequest": "^1.8.0"
   }
 }
