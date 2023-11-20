@@ -5,7 +5,12 @@ function endOf(end) {
         return new Observable(subscriber => {
             source.subscribe({
                 next(value) {
-                    if (value.endsWith(end)) subscriber.next(value)
+                    if(Array.isArray(value)) {
+                        subscriber.next(
+                            value.filter(element => element.endsWith(end))
+                        )
+                        subscriber.complete()
+                    } else if (value.endsWith(end)) subscriber.next(value)
                 }
             })
         })
@@ -15,3 +20,9 @@ function endOf(end) {
 of('frajola', 'thor', 'lucyfer', 'zeuzz')
  .pipe(endOf('zz'))
  .subscribe(console.log)
+
+
+
+of(['frajola', 'thor', 'lucyfer', 'zeuzz'])
+  .pipe(endOf('r'))
+  .subscribe(console.log)
