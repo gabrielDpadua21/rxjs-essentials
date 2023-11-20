@@ -5,8 +5,7 @@ function endOf(end) {
         return new Observable(subscriber => {
             source.subscribe({
                 next(value) {
-                    if (end === value.substring(value.length - 1))
-                        subscriber.next(value)
+                    if (value.endsWith(end)) subscriber.next(value)
                 }
             })
         })
@@ -14,5 +13,5 @@ function endOf(end) {
 }
 
 of('frajola', 'thor', 'lucyfer', 'zeuzz')
- .pipe(endOf('a'))
+ .pipe(endOf('zz'))
  .subscribe(console.log)
